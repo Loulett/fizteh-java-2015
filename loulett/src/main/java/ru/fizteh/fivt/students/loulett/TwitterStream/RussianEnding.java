@@ -21,11 +21,11 @@ public class RussianEnding {
 
         if (count % TEN >= FIVE || (count % HUNDRED > TEN
                 && count % HUNDRED <= TWENTY) || count % TEN == 0) {
-            return count + " " + ENDINGS.get(word)[0];
+            return ENDINGS.get(word)[0];
         } else if (count % TEN == 1) {
-            return count + " " + ENDINGS.get(word)[1];
+            return ENDINGS.get(word)[1];
         } else {
-            return count + " " + ENDINGS.get(word)[2];
+            return ENDINGS.get(word)[2];
         }
     }
 }

@@ -4,7 +4,10 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import twitter4j.*;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -18,21 +21,25 @@ public class Main {
 
     private static String retweetsCount(int retweets) {
 
-        return "(" + RussianEnding.russianEnding(retweets, "ретвит") + ")";
+        return "(" + retweets + " " + RussianEnding.russianEnding(retweets, "ретвит") + ")";
     }
 
     private static String printOneTweet(Status status, boolean isStream) {
         StringBuilder  tweet = new StringBuilder();
         if (!isStream) {
-            tweet.append("["
-                    + TimeFormatter.timeFromPublish(status.getCreatedAt().getTime(), System.currentTimeMillis()) + "]");
+            long tweetTime = status.getCreatedAt().getTime();
+            LocalDateTime tweetTime1 = new
+                    Date(tweetTime).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            LocalDateTime currTime = LocalDateTime.now(ZoneId.systemDefault());
+            tweet.append("[").append(TimeFormatter.timeFromPublish(tweetTime1,
+                    currTime)).append("]");
         }
-        tweet.append(ANSI_BLUE + " @" + status.getUser().getScreenName() + ANSI_RESET);
+        tweet.append(ANSI_BLUE + " @").append(status.getUser().getScreenName()).append(ANSI_RESET);
         if (status.isRetweet()) {
-            tweet.append(" ретвитнул @" + status.getRetweetedStatus().getUser().getScreenName());
-            tweet.append(" : " + status.getRetweetedStatus().getText());
+            tweet.append(" ретвитнул @").append(status.getRetweetedStatus().getUser().getScreenName());
+            tweet.append(" : ").append(status.getRetweetedStatus().getText());
         } else {
-            tweet.append(" : " + status.getText());
+            tweet.append(" : ").append(status.getText());
             if (status.getRetweetCount() != 0) {
                 tweet.append(retweetsCount(status.getRetweetCount()));
             }
