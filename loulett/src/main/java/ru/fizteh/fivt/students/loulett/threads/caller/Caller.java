@@ -7,8 +7,8 @@ import java.util.Random;
  */
 public class Caller {
     private final Integer numberOfThreads;
-    private final Double LOW_PROBABILITY = 0.1;
-    private final long START = 3;
+    static final Double LOW_PROBABILITY = 0.1;
+    static final long START = 3;
     private Integer numberOfCalled = 0;
     private Integer numberOfCalling = 0;
     private boolean ready = false;
@@ -27,11 +27,12 @@ public class Caller {
             while (true) {
                 synchronized (Caller.this) {
                     while (called == numberOfCalling) {
-                        if (numberOfCalled == numberOfThreads && ready)
+                        if (numberOfCalled == numberOfThreads && ready) {
                             return;
+                        }
                         try {
                             Caller.this.wait();
-                        } catch (InterruptedException E) {
+                        } catch (InterruptedException e) {
                             System.err.printf("Interrupted\n");
                             return;
                         }
@@ -66,7 +67,7 @@ public class Caller {
                 while (numberOfCalled != numberOfThreads) {
                     try {
                         Caller.this.wait();
-                    } catch (InterruptedException E) {
+                    } catch (InterruptedException e) {
                         System.err.printf("Interrupted\n");
                         return;
                     }

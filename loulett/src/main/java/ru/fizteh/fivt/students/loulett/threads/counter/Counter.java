@@ -7,7 +7,7 @@ public class Counter {
     private final Integer numberOfThreads;
     private Integer currentThread;
 
-    class Counted implements Runnable{
+    class Counted implements Runnable {
         private final Integer numberOfThread;
 
         Counted(Integer number) {
@@ -16,12 +16,12 @@ public class Counter {
 
         @Override
         public void run() {
-            while(true) {
+            while (true) {
                 synchronized (Counter.this) {
                     while ((currentThread + 1) % numberOfThreads != numberOfThread) {
                         try {
                             Counter.this.wait();
-                        } catch (InterruptedException E) {
+                        } catch (InterruptedException e) {
                             System.err.printf("Interrutpted %d\n", numberOfThread);
                             return;
                         }

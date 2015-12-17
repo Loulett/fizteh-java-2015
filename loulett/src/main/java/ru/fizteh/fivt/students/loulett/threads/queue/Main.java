@@ -37,7 +37,7 @@ public class Main {
         public void run() {
             try {
                 List<Integer> result = queue.take(n);
-                for(int i = 0; i < n; i++) {
+                for (int i = 0; i < n; i++) {
                     System.out.printf(String.valueOf(result.get(i)));
                 }
             } catch (InterruptedException e) {
