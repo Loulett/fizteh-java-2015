@@ -35,7 +35,7 @@ public class TweetPrinter {
             LocalDateTime tweetTime1 = new
                     Date(tweetTime).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
             LocalDateTime currTime = LocalDateTime.now(ZoneId.systemDefault());
-            tweet.append("[").append(ru.fizteh.fivt.students.loulett.TwitterStream.TimeFormatter.timeFromPublish(tweetTime1,
+            tweet.append("[").append(TimeFormatter.timeFromPublish(tweetTime1,
                     currTime)).append("]");
         }
         tweet.append(ANSI_BLUE + " @").append(status.getUser().getScreenName()).append(ANSI_RESET);

@@ -28,8 +28,9 @@ public class SearchTweets {
                 printer.accept(status);
                 limit--;
             }
-            if (limit == 0)
+            if (limit == 0) {
                 break;
+            }
         }
     }
 }
