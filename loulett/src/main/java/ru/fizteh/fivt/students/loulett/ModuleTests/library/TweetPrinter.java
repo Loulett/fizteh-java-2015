@@ -35,10 +35,10 @@ public class TweetPrinter {
             LocalDateTime tweetTime1 = new
                     Date(tweetTime).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
             LocalDateTime currTime = LocalDateTime.now(ZoneId.systemDefault());
-            tweet.append("[").append(TimeFormatter.timeFromPublish(tweetTime1,
-                    currTime)).append("]");
+            //tweet.append("[").append(TimeFormatter.timeFromPublish(tweetTime1,
+             //       currTime)).append("]");
         }
-        tweet.append(ANSI_BLUE + " @").append(status.getUser().getScreenName()).append(ANSI_RESET);
+        tweet.append(" @").append(status.getUser().getScreenName());
         if (status.isRetweet()) {
             tweet.append(" ретвитнул @").append(status.getRetweetedStatus().getUser().getScreenName());
             tweet.append(" : ").append(status.getRetweetedStatus().getText());
@@ -48,7 +48,7 @@ public class TweetPrinter {
                 tweet.append(retweetsCount(status.getRetweetCount()));
             }
         }
-        printMinuses();
+        //printMinuses();
         System.out.println(tweet.toString());
     }
 }
