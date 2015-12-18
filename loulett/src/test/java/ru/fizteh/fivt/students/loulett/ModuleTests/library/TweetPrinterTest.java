@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class TweetPrinterTest {
     private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private static final int HUNDRED = 100;
     public static List<Status> statuses;
 
     @BeforeClass
@@ -29,8 +30,9 @@ public class TweetPrinterTest {
         TweetPrinter.setStream(true);
         TweetPrinter.print(statuses.get(0));
         String expected =
-                "--------------------------------------------------------------------------------\n" +
-                "@QuintetLive: #QuintetLaunch : welddon launched the Sherlock DGAP (Human Solo).\n".trim();
+                new String(new char[HUNDRED]).replace('\0', '-') + '\n' +
+                "\u001B[34m @QuintetLive\u001B[0m : #QuintetLaunch : welddon launched the Sherlock DGAP (Human Solo).\n"
+                                .trim();
         String actual = outContent.toString().trim();
         assertEquals(expected, actual);
 

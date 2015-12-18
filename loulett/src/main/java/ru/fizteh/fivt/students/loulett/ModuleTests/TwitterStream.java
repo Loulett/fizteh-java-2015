@@ -22,7 +22,7 @@ public class TwitterStream {
         TweetPrinter.setStream(jCommanderParameters.isStream());
         if (!jCommanderParameters.isStream()) {
             search(jCommanderParameters, TweetPrinter::print);
-        } else{
+        } else {
             stream(jCommanderParameters, TweetPrinter::print);
         }
     }

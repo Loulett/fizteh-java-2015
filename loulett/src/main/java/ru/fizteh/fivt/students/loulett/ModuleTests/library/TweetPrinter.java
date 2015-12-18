@@ -13,7 +13,7 @@ public class TweetPrinter {
     static final int HUNDRED = 100;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLUE = "\u001B[34m";
-    public static boolean isStream;
+    private static boolean isStream;
 
     public static void setStream(boolean s) {
         isStream = s;

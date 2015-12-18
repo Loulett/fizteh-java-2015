@@ -33,15 +33,10 @@ public class SearchTweetsTest {
     private SearchTweets search;
 
     public static List<Status> statuses;
+
     @BeforeClass
     public static void Sample() {
-        statuses =  Twitter4jTestUtils.tweetsFromJson("/sample.json");
-    }
-
-    JCommanderPar SetJCommanderParams(String... args) {
-        JCommanderPar setting = new JCommanderPar();
-        new JCommander(setting, args);
-        return setting;
+        statuses =  Twitter4jTestUtils.tweetsFromJson("/statuses.json");
     }
 
     @Before
@@ -59,7 +54,7 @@ public class SearchTweetsTest {
     @Test
     public void testGetTweet() throws Exception {
         JCommanderPar param = new JCommanderPar();
-        String[] args = {"-q", "Sherlock", "-s", "-l", "100", "-p", ""};
+        String[] args = {"-q", "Sherlock", "-l", "100", "-p", ""};
         JCommander cmd = new JCommander(param, args);
 
         List<Status> tweets = new ArrayList<>();
