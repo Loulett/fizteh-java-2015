@@ -1,4 +1,4 @@
-package ru.fizteh.fivt.students.loulett.TwitterStream;
+package ru.fizteh.fivt.students.loulett.ModuleTests.library;
 
 import org.junit.Assert;
 import org.junit.Test;
